@@ -1,0 +1,66 @@
+.login-page {
+  background-color: black; /* Black background for the page */
+  padding: 20px;
+}
+
+.form-container {
+  background-color: #3e2b1f; /* Dark brown background */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.toggle-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.toggle-buttons button {
+  background-color: #d2a675; /* Light brown background */
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.toggle-buttons button.active {
+  background-color: #b17d56; /* Darker brown when active */
+}
+
+.form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #d2a675; /* Light brown for input fields */
+  border: 1px solid #b17d56;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.submit-button {
+  text-align: center;
+}
+
+.submit-button button {
+  background-color: #b17d56; /* Darker brown for submit button */
+  color: black;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.submit-button button:hover {
+  background-color: #d2a675; /* Light brown on hover */
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
