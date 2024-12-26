@@ -1,4 +1,3 @@
-// routes/toyRoutes.js
 const express = require("express");
 const TotalToy = require("../models/TotalToy"); // Import the TotalToy model
 
@@ -46,6 +45,31 @@ router.post("/api/toys/:id/update", async (req, res) => {
   } catch (error) {
     console.error("Error updating toy:", error);
     res.status(500).json({ message: "Error updating toy" });
+  }
+});
+
+// Route to handle purchase
+router.post("/api/toys/purchase", async (req, res) => {
+  const { toys } = req.body; // Array of toy objects with id and purchaseCount
+
+  try {
+    for (const toy of toys) {
+      const { id, purchaseCount } = toy;
+      const toyDoc = await TotalToy.findById(id);
+
+      if (!toyDoc) continue; // Skip if toy not found
+
+      // Update the totalCount and reset purchaseCount
+      toyDoc.totalCount -= purchaseCount;
+      toyDoc.purchaseCount = 0;
+
+      await toyDoc.save();
+    }
+
+    res.status(200).json({ message: "Purchase successful" });
+  } catch (error) {
+    console.error("Error processing purchase:", error);
+    res.status(500).json({ message: "Error processing purchase" });
   }
 });
 
