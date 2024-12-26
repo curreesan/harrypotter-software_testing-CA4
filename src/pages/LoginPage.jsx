@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext"; // Import the context
 import NavBar from "../components/NavBar";
 import "../styles/LoginPage.css";
 
 const LoginPage = () => {
-  // States for form data
+  const { login } = useContext(UserContext); // Access the login function from the context
   const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({
     username: "",
@@ -20,11 +21,10 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isSignUp) {
-      // Validate Sign Up
       if (!formData.email.includes("@")) {
         setErrorMessage("Invalid email format");
         return;
@@ -37,16 +37,56 @@ const LoginPage = () => {
         setErrorMessage("Username is required");
         return;
       }
-      // Handle sign up logic (e.g., save to database, create account)
-      setErrorMessage("Account successfully created! Please log in.");
+
+      // Handle sign-up logic (create user)
+      try {
+        const response = await fetch("http://localhost:5000/api/register", {
+          // Full URL for backend
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          // Sign up successful, log the user in
+          login({ username: formData.username }, data.token); // Login with the new user's data and token
+          setErrorMessage("Account successfully created! Please log in.");
+        } else {
+          setErrorMessage(data.message);
+        }
+      } catch (error) {
+        setErrorMessage("Error signing up");
+      }
     } else {
-      // Validate Login
+      // Handle login logic
       if (formData.username === "" || formData.password === "") {
         setErrorMessage("Please enter both username/email and password");
         return;
       }
-      // Handle login logic (e.g., authenticate user)
-      setErrorMessage("Login successful!");
+
+      try {
+        const response = await fetch("http://localhost:5000/api/login", {
+          // Full URL for backend
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          login({ username: formData.username }, data.token); // Login with the received token
+          setErrorMessage("Login successful!");
+        } else {
+          setErrorMessage(data.message);
+        }
+      } catch (error) {
+        setErrorMessage("Error logging in");
+      }
     }
   };
 
@@ -54,7 +94,6 @@ const LoginPage = () => {
     <div className="login-page">
       <NavBar />
       <div className="form-container">
-        {/* Row 1: Toggle buttons for Sign Up / Login */}
         <div className="toggle-buttons">
           <button
             onClick={() => setIsSignUp(true)}
@@ -70,7 +109,6 @@ const LoginPage = () => {
           </button>
         </div>
 
-        {/* Row 2: Form */}
         <form onSubmit={handleSubmit} className="form">
           {isSignUp && (
             <>
@@ -130,7 +168,6 @@ const LoginPage = () => {
           )}
         </form>
 
-        {/* Row 3: Submit button and error message */}
         <div className="submit-button">
           <button type="submit" onClick={handleSubmit}>
             {isSignUp ? "Sign Up" : "Log In"}

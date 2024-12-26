@@ -1,9 +1,11 @@
-// routes/userRoutes.js
 const express = require("express");
-const User = require("../models/User"); // Import the User model
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+const verifyToken = require("../middleware/verifyToken"); // Import the JWT verification middleware
 const router = express.Router();
 
-// Route for user registration (No hashing)
+// Register route
 router.post("/api/register", async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
 
@@ -13,7 +15,6 @@ router.post("/api/register", async (req, res) => {
   }
 
   try {
-    // Check if the username or email already exists
     const existingUser = await User.findOne({
       $or: [{ username }, { email }],
     });
@@ -24,46 +25,65 @@ router.post("/api/register", async (req, res) => {
         .json({ message: "Username or email already exists" });
     }
 
-    // Create a new user (no password hashing)
     const newUser = new User({
       username,
       email,
-      password, // Store password directly without hashing
+      password,
     });
 
-    // Save the new user to the database
     await newUser.save();
 
-    res.status(201).json({ message: "User registered successfully" });
+    // Create JWT token
+    const token = jwt.sign(
+      { userId: newUser._id }, // Payload with userId
+      process.env.JWT_SECRET, // Secret from .env
+      { expiresIn: "1h" } // Optional expiration time (1 hour)
+    );
+
+    res.status(201).json({ message: "User registered successfully", token });
   } catch (error) {
     console.error("Error registering user:", error);
     res.status(500).json({ message: "Error registering user" });
   }
 });
 
-// Route for user login (No hashing)
+// Login route
 router.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // Find the user by username
     const user = await User.findOne({ username });
 
     if (!user) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // Compare the provided password with the one stored in the database
-    if (user.password !== password) {
+    // Compare password with hashed password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // Success - user logged in
-    res.status(200).json({ message: "User logged in successfully" });
+    // Create JWT token
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h", // Token expires in 1 hour
+    });
+
+    res.status(200).json({ message: "User logged in successfully", token });
   } catch (error) {
     console.error("Error logging in:", error);
     res.status(500).json({ message: "Error logging in" });
   }
+});
+
+// Protected route that requires JWT token
+router.get("/api/protected", verifyToken, (req, res) => {
+  // If the token is valid, we get to this point.
+  res.json({
+    message: "This is a protected route",
+    userId: req.userId, // Send back the userId from the decoded JWT
+  });
 });
 
 module.exports = router;
