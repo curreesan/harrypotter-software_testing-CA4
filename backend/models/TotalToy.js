@@ -17,6 +17,10 @@ const totalToySchema = new mongoose.Schema({
     type: Number,
     default: 0, // Default purchase count is 0
   },
+  image: {
+    type: String, // String type for the image URL
+    required: true, // Optional, depends on whether all toys should have images
+  },
 });
 
 const TotalToy = mongoose.model("TotalToy", totalToySchema);

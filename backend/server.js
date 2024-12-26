@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors"); // Import CORS middleware
 const toyRoutes = require("./routes/toyRoutes"); // Import the toyRoutes
 const userRoutes = require("./routes/userRoutes"); // Import the userRoutes
 
@@ -12,6 +13,9 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware to parse JSON
 app.use(express.json());
+
+// Use CORS middleware to allow requests from the frontend
+app.use(cors());
 
 // MongoDB Connection
 mongoose

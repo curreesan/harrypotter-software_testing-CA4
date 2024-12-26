@@ -1,0 +1,82 @@
+.toy-item {
+  background-color: #d2a675; /* Light brown for each card */
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.toy-image img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.toy-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.details-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.toy-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.toy-price {
+  font-size: 16px;
+  color: #333;
+}
+
+.details-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity-btn {
+  background-color: #b17d56; /* Darker brown button */
+  color: black;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.quantity-btn:hover {
+  background-color: #d2a675; /* Lighter brown on hover */
+}
+
+.quantity-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.quantity-input {
+  width: 40px;
+  text-align: center;
+  font-size: 16px;
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  background-color: white;
+}
+
+.stock-left {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+}
