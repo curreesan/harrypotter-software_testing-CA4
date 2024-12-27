@@ -22,7 +22,7 @@ const ToyCard = ({
           <div className="toy-price">${price}</div>
         </div>
         <div className="details-right">
-          <button className="quantity-btn" onClick={onIncrease}>
+          <button className="quantity-btn" onClick={onDecrease}>
             -
           </button>
           <input
@@ -31,7 +31,7 @@ const ToyCard = ({
             readOnly
             className="quantity-input"
           />
-          <button className="quantity-btn" onClick={onDecrease}>
+          <button className="quantity-btn" onClick={onIncrease}>
             +
           </button>
         </div>

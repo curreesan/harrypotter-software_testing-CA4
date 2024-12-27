@@ -18,9 +18,11 @@ const HomePage = () => {
   const handleButtonClick = (toyId, action) => {
     const updatedCart = cart.slice();
     const toy = toys.find((item) => item._id === toyId);
+    const i = updatedCart.findIndex((item) => item._id === toyId);
+    // console.log("handle", toy);
+    // console.log("index :", i);
+
     if (action === "increase") {
-      console.log("handle", toy);
-      const i = updatedCart.findIndex((item) => item._id === toyId);
       if (i !== -1) {
         updatedCart[i].purchaseCount = Math.min(
           toy.totalCount,
@@ -29,7 +31,15 @@ const HomePage = () => {
       } else {
         updatedCart.push({ _id: toyId, name: toy.name, purchaseCount: 1 });
       }
+    } else if (action === "decrease") {
+      if (i !== -1) {
+        updatedCart[i].purchaseCount = Math.max(
+          0,
+          updatedCart[i].purchaseCount - 1
+        );
+      }
     }
+
     setCart(updatedCart);
   };
 

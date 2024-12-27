@@ -16,7 +16,7 @@ router.get("/api/toys", async (req, res) => {
 
 // Route to handle purchase
 router.post("/api/toys/purchase", async (req, res) => {
-  const { toys } = req.body; // Array of toy objects with id and purchaseCount
+  const toys = req.body; // Array of toy objects with id and purchaseCount
 
   try {
     for (const toy of toys) {
