@@ -1,4 +1,3 @@
-// src/pages/HomePage.jsx
 import React, { useContext, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import ToyCard from "../components/ToyCard";

@@ -4,6 +4,7 @@
   padding: 15px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .toy-image img {
@@ -16,7 +17,7 @@
 .toy-details {
   display: flex;
   justify-content: space-between;
-  gap: 3rem;
+  gap: 4rem;
   margin-top: 10px;
 }
 
@@ -30,17 +31,20 @@
   font-size: 2.4rem;
   font-weight: bold;
   color: #333;
+  letter-spacing: 1px;
+  line-height: 1;
 }
 
 .toy-price {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #333;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .stock-left {
-  font-size: 1.25rem;
+  font-size: 3rem;
   color: #333;
+  line-height: 2;
 }
 
 .details-right {
@@ -58,10 +62,13 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .quantity-btn:hover {
-  background-color: #d2a675; /* Lighter brown on hover */
+  background-color: #3e2b1f; /* darker brown on hover */
 }
 
 .quantity-btn:disabled {

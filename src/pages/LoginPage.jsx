@@ -83,7 +83,7 @@ const LoginPage = () => {
         if (response.ok) {
           login({ username: formData.username }, data.token); // Login with the received token
           setErrorMessage("Login successful!");
-          navigate("/purchase");
+          navigate("/");
         } else {
           setErrorMessage(data.message);
         }
@@ -154,7 +154,7 @@ const LoginPage = () => {
               <input
                 type="text"
                 name="username"
-                placeholder="Username or Email"
+                placeholder="Username"
                 value={formData.username}
                 onChange={handleInputChange}
                 required

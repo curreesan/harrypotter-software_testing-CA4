@@ -1,14 +1,17 @@
 .login-page {
-  background-color: black; /* Black background for the page */
+  background-color: black;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
+  height: 100%;
 }
 
 .form-container {
   background-color: #3e2b1f; /* Dark brown background */
   padding: 20px;
   border-radius: 8px;
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: auto;
 }
 
 .toggle-buttons {
@@ -22,7 +25,7 @@
   color: black;
   border: none;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 32px;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -38,7 +41,8 @@
   background-color: #d2a675; /* Light brown for input fields */
   border: 1px solid #b17d56;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 32px;
+  letter-spacing: 1px;
 }
 
 .submit-button {
@@ -49,7 +53,7 @@
   background-color: #b17d56; /* Darker brown for submit button */
   color: black;
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 32px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -61,6 +65,6 @@
 
 .error-message {
   color: red;
-  font-size: 14px;
+  font-size: 32px;
   margin-top: 10px;
 }

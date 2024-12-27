@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Hogwarts Store - MERN Stack Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack application built using the MERN stack (MongoDB, Express, React, Node.js) to manage a toy store. This project allows users to authenticate, add items to their cart, and make purchases. The application tracks the total number of toys in the store and the number of toys added to the cart. It features user authentication with JWT, dynamic updates of the toy count, and purchase logic.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **User Authentication**:
 
-### `npm start`
+  - JWT-based authentication for secure login and sign-up.
+  - Users must be logged in to add items to the cart and make a purchase.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **HomePage**:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  - Displays available toys with + and - buttons to adjust the number of toys added to the cart.
+  - Requires the user to be logged in to adjust cart counts.
 
-### `npm test`
+- **PurchasePage**:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - Displays the purchase count of toys.
+  - Requires user authentication and verifies that the cart is not empty before proceeding with the purchase.
+  - After purchase, the toy count in the backend is updated and reset to 0.
 
-### `npm run build`
+- **Backend**:
+  - MongoDB is used to track the toy inventory and purchase counts.
+  - Express.js is used to handle API routes for authentication and toy updates.
+  - The database consists of two collections: one for tracking toy totals and another for tracking cart purchases.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Frontend**: React, React Context API for state management
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Authentication**: JWT (JSON Web Tokens)
+- **State Management**: React Context API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+- Node.js (v16+)
+- MongoDB (local or remote instance)
+- npm (v7+)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Usage
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **User Authentication**:
+   - The user can sign up with a new account or log in using existing credentials. JWT tokens are used to authenticate and manage sessions.
+2. **HomePage**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   - Users can see available toys and adjust the cart count using + or - buttons. The toy count is updated dynamically on the frontend and backend when adjustments are made.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. **PurchasePage**:
+   - The user clicks the 'Purchase' button to finalize their purchase. If the user is logged in and the cart is not empty, the purchase is processed, updating the toy count in the database and resetting the cart count.

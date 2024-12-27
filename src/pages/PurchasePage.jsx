@@ -1,4 +1,3 @@
-// src/pages/PurchasePage.jsx
 import React, { useContext } from "react";
 import NavBar from "../components/NavBar";
 import { UserContext } from "../context/UserContext";

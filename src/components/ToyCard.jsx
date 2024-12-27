@@ -20,7 +20,6 @@ const ToyCard = ({
         <div className="details-left">
           <div className="toy-name">{name}</div>
           <div className="toy-price">${price}</div>
-          <div className="stock-left">{stock} left!</div>
         </div>
         <div className="details-right">
           <button className="quantity-btn" onClick={onDecrease}>
@@ -39,6 +38,7 @@ const ToyCard = ({
           </button>
         </div>
       </div>
+      <div className="stock-left">{stock} left!</div>
     </div>
   );
 };

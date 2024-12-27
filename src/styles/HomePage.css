@@ -22,4 +22,6 @@
   gap: 20px;
   background-color: #3e2b1f; /* Dark brown grid background */
   padding: 20px;
+  border: 1px solid;
+  border-radius: 8px;
 }
