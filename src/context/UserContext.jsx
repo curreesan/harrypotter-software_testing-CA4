@@ -1,5 +1,3 @@
-// src/context/UserContext.jsx
-
 import React, { createContext, useState, useEffect } from "react";
 
 // Create the context
@@ -16,6 +14,7 @@ export const UserProvider = ({ children }) => {
       // Optionally, decode the token to get user information (e.g., userId)
       const decodedToken = JSON.parse(atob(token.split(".")[1]));
       setUser({ userId: decodedToken.userId });
+      console.log("decoded", decodedToken);
     }
   }, [token]);
 

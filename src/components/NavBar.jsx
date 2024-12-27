@@ -1,25 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css"; // Assuming NavBar.css is in the same folder
+import { UserContext } from "../context/UserContext";
 
-const NavBar = ({ user }) => {
+const NavBar = () => {
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   // If user is logged in, show their username, otherwise show 'Login / Sign Up'
-  const handleLoginLogoutClick = () => {
-    if (user) {
-      // Redirect to Login/SignUp page to show user details (this can be adjusted later)
-      navigate("/login");
-    } else {
-      navigate("/login");
-    }
-  };
+  const handleLogin = () => navigate("/login");
+
+  const handleLogout = () => {};
 
   return (
     <nav className="navbar">
       <div className="logo">
         <img
-          src="/src/images/hogwarts.logo"
+          src="/hogwartslogo.webp"
           alt="Kinderjoy Logo"
           className="logo-img"
         />
@@ -31,12 +28,14 @@ const NavBar = ({ user }) => {
         <Link to="/purchase" className="nav-link">
           Purchase
         </Link>
-        <button
-          className="nav-link login-signup"
-          onClick={handleLoginLogoutClick}
-        >
-          {user ? user.username : "Login / Sign Up"}
-        </button>
+
+        {!user ? (
+          <button className="nav-link login-signup" onClick={handleLogin}>
+            {user ? user.username : "Login / Sign Up"}
+          </button>
+        ) : (
+          <a className="nav-link">Logout &rarr;</a>
+        )}
       </div>
     </nav>
   );

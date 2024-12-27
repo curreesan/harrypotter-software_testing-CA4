@@ -10,13 +10,10 @@ import CartProvider from "./context/CartContext"; // Import CartProvider
 function App() {
   return (
     <UserProvider>
-      {" "}
       {/* Wrap the application with UserProvider for authentication */}
       <ToyProvider>
-        {" "}
         {/* Wrap the application with ToyProvider for toy data */}
         <CartProvider>
-          {" "}
           {/* Wrap the application with CartProvider for cart state */}
           <Router>
             <Routes>

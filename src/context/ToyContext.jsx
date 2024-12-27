@@ -20,30 +20,12 @@ export const ToyProvider = ({ children }) => {
     }
   };
 
-  // Update purchaseCount for a specific toy
-  const updatePurchaseCount = async (id, action) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/api/toys/${id}/update`,
-        { action }
-      );
-      const updatedToy = response.data;
-      setToys((prevToys) =>
-        prevToys.map((toy) => (toy._id === updatedToy._id ? updatedToy : toy))
-      );
-    } catch (error) {
-      console.error("Error updating purchase count:", error);
-    }
-  };
-
   useEffect(() => {
     fetchToys();
   }, []);
 
   return (
-    <ToyContext.Provider
-      value={{ toys, loading, fetchToys, updatePurchaseCount }}
-    >
+    <ToyContext.Provider value={{ toys, loading, fetchToys }}>
       {children}
     </ToyContext.Provider>
   );

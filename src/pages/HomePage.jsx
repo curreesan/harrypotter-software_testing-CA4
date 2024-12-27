@@ -50,22 +50,25 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <NavBar />
-      <div className="toy-grid">
-        {toys.map((toy) => (
-          <ToyCard
-            key={toy._id}
-            id={toy._id}
-            name={toy.name}
-            price={toy.price}
-            stock={toy.totalCount}
-            img={toy.image}
-            purchaseCount={
-              cart.find((item) => item._id === toy._id)?.purchaseCount || 0
-            }
-            onIncrease={() => handleButtonClick(toy._id, "increase")}
-            onDecrease={() => handleButtonClick(toy._id, "decrease")}
-          />
-        ))}
+
+      <div className="toy-container">
+        <div className="toy-grid">
+          {toys.map((toy) => (
+            <ToyCard
+              key={toy._id}
+              id={toy._id}
+              name={toy.name}
+              price={toy.price}
+              stock={toy.totalCount}
+              img={toy.image}
+              purchaseCount={
+                cart.find((item) => item._id === toy._id)?.purchaseCount || 0
+              }
+              onIncrease={() => handleButtonClick(toy._id, "increase")}
+              onDecrease={() => handleButtonClick(toy._id, "decrease")}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
