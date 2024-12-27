@@ -25,15 +25,8 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("token", jwtToken); // Store token in localStorage for persistence
   };
 
-  // Function to log out the user
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem("token"); // Clear token from localStorage
-  };
-
   return (
-    <UserContext.Provider value={{ user, token, login, logout }}>
+    <UserContext.Provider value={{ user, setUser, token, login }}>
       {children}
     </UserContext.Provider>
   );

@@ -2,8 +2,10 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext"; // Import the context
 import NavBar from "../components/NavBar";
 import "../styles/LoginPage.css";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const { login } = useContext(UserContext); // Access the login function from the context
   const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({
@@ -81,6 +83,7 @@ const LoginPage = () => {
         if (response.ok) {
           login({ username: formData.username }, data.token); // Login with the received token
           setErrorMessage("Login successful!");
+          navigate("/purchase");
         } else {
           setErrorMessage(data.message);
         }

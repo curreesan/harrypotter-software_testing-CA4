@@ -2,15 +2,23 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css"; // Assuming NavBar.css is in the same folder
 import { UserContext } from "../context/UserContext";
+import { CartContext } from "../context/CartContext";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const { setCart } = useContext(CartContext);
 
   // If user is logged in, show their username, otherwise show 'Login / Sign Up'
   const handleLogin = () => navigate("/login");
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    setUser(null);
+    setCart([]);
+
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   return (
     <nav className="navbar">
@@ -34,7 +42,9 @@ const NavBar = () => {
             {user ? user.username : "Login / Sign Up"}
           </button>
         ) : (
-          <a className="nav-link">Logout &rarr;</a>
+          <a onClick={() => handleLogout()} className="nav-link">
+            Logout &rarr;
+          </a>
         )}
       </div>
     </nav>

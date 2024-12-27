@@ -6,11 +6,23 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Hogwarts";
+  src: url("/public/fonts/hogwarts.ttf") format("truetype");
+}
+
 html,
 body {
   height: 100%;
+  font-family: "Hogwarts", sans-serif;
+  line-height: 1.5;
 }
 
 #root {
   height: 100%;
+}
+
+input,
+button {
+  font: inherit;
 }

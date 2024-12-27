@@ -27,19 +27,19 @@
 }
 
 .toy-name {
-  font-size: 18px;
+  font-size: 2.4rem;
   font-weight: bold;
   color: #333;
 }
 
 .toy-price {
-  font-size: 16px;
+  font-size: 1.5rem;
   color: #333;
   font-weight: bold;
 }
 
 .stock-left {
-  font-size: 14px;
+  font-size: 1.25rem;
   color: #333;
 }
 

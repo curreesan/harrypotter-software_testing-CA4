@@ -1,8 +1,7 @@
 .home-page {
+  background-color: black; /* Black background for the home page */
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-  background-color: black; /* Black background for the home page */
   padding: 20px;
   height: 100%;
   overflow: auto;

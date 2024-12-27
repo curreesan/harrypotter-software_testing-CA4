@@ -9,6 +9,13 @@ const PurchasePage = () => {
   const { cart, setCart } = useContext(CartContext);
   const { user } = useContext(UserContext);
 
+  const calculateValue = (name, purchaseCount) => {
+    if (name === "Harry") return purchaseCount * 100;
+    if (name === "Ron") return purchaseCount * 80;
+    if (name === "Hermione") return purchaseCount * 120;
+    return purchaseCount; // Default to just showing the count if name doesn't match
+  };
+
   const handlePurchase = async () => {
     if (!user) {
       alert("Please log in to proceed with the purchase.");
@@ -60,7 +67,9 @@ const PurchasePage = () => {
               {cart.map((toy) => (
                 <div className="cart-item" key={toy._id}>
                   <div className="cart-item-name">{toy.name}</div>
-                  <div className="cart-item-quantity">{toy.purchaseCount}</div>
+                  <div className="cart-item-quantity">
+                    {calculateValue(toy.name, toy.purchaseCount)}$
+                  </div>
                 </div>
               ))}
             </div>
