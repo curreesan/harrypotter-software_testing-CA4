@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ToyCard.css";
 
-const ToyCard = ({ id, name, price, stock, img }) => {
-  const [quantity, setQuantity] = useState(0);
-
-  const handleQuantityChange = (action) => {
-    if (action === "increment" && quantity < stock) {
-      setQuantity((prev) => prev + 1);
-    } else if (action === "decrement" && quantity > 0) {
-      setQuantity((prev) => prev - 1);
-    }
-  };
-
+const ToyCard = ({
+  id,
+  name,
+  price,
+  stock,
+  img,
+  onIncrease,
+  onDecrease,
+  purchaseCount,
+}) => {
   return (
     <div className="toy-item">
       <div className="toy-image">
@@ -23,27 +22,21 @@ const ToyCard = ({ id, name, price, stock, img }) => {
           <div className="toy-price">${price}</div>
         </div>
         <div className="details-right">
-          <button
-            className="quantity-btn"
-            onClick={() => handleQuantityChange("decrement")}
-          >
+          <button className="quantity-btn" onClick={onIncrease}>
             -
           </button>
           <input
             type="text"
-            value={quantity}
+            value={purchaseCount}
             readOnly
             className="quantity-input"
           />
-          <button
-            className="quantity-btn"
-            onClick={() => handleQuantityChange("increment")}
-          >
+          <button className="quantity-btn" onClick={onDecrease}>
             +
           </button>
         </div>
       </div>
-      <div className="stock-left">{stock - quantity} left!</div>
+      <div className="stock-left">{stock} left!</div>
     </div>
   );
 };

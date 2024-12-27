@@ -14,40 +14,6 @@ router.get("/api/toys", async (req, res) => {
   }
 });
 
-// Route to update the purchase count for a toy
-router.post("/api/toys/:id/update", async (req, res) => {
-  const toyId = req.params.id;
-  const { action } = req.body; // action could be 'increase' or 'decrease'
-
-  try {
-    const toy = await TotalToy.findById(toyId); // Find the toy by its ID
-
-    if (!toy) {
-      return res.status(404).json({ message: "Toy not found" });
-    }
-
-    // Handle the increase or decrease action
-    if (action === "increase") {
-      if (toy.purchaseCount < toy.totalCount) {
-        toy.purchaseCount += 1; // Increase purchase count
-      } else {
-        return res.status(400).json({ message: "No more toys available" });
-      }
-    } else if (action === "decrease" && toy.purchaseCount > 0) {
-      toy.purchaseCount -= 1; // Decrease purchase count
-    }
-
-    // Save the updated toy document
-    await toy.save();
-
-    // Send the updated toy data to the frontend
-    res.json(toy);
-  } catch (error) {
-    console.error("Error updating toy:", error);
-    res.status(500).json({ message: "Error updating toy" });
-  }
-});
-
 // Route to handle purchase
 router.post("/api/toys/purchase", async (req, res) => {
   const { toys } = req.body; // Array of toy objects with id and purchaseCount

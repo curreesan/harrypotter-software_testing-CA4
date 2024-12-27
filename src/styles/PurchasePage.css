@@ -57,3 +57,13 @@
 .purchase-button button:hover {
   background-color: #d2a675; /* Light brown on hover */
 }
+
+.empty-cart-message {
+  text-align: center;
+  color: #fff; /* White text color */
+  font-size: 18px;
+  padding: 20px;
+  background-color: #b17d56; /* Light brown background */
+  border-radius: 8px;
+  margin-top: 20px;
+}
