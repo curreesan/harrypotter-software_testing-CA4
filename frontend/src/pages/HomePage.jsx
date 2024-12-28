@@ -12,7 +12,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchToys(); // Re-fetch data when HomePage is loaded
-  }, [fetchToys]);
+  }, []);
 
   const handleButtonClick = (toyId, action) => {
     const updatedCart = cart.slice();
