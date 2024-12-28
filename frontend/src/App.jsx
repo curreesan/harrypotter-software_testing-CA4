@@ -8,6 +8,8 @@ import { UserProvider } from "./context/UserContext"; // Import UserProvider
 import CartProvider from "./context/CartContext"; // Import CartProvider
 
 function App() {
+  console.log(process.env.REACT_APP_API);
+
   return (
     <UserProvider>
       {/* Wrap the application with UserProvider for authentication */}
