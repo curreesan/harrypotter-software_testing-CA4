@@ -25,18 +25,21 @@ const PurchasePage = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/api/toys/purchase", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-          cart.map(({ _id, purchaseCount }) => ({
-            id: _id,
-            purchaseCount,
-          }))
-        ),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API}/api/toys/purchase`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(
+            cart.map(({ _id, purchaseCount }) => ({
+              id: _id,
+              purchaseCount,
+            }))
+          ),
+        }
+      );
 
       if (response.ok) {
         alert("Purchase successful!");

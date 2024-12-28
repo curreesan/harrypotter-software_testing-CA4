@@ -9,7 +9,7 @@ const verifyToken = require("./middleware/verifyToken"); // Import the JWT verif
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
@@ -34,5 +34,5 @@ app.post("/api/cart/add", verifyToken, (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port : ${PORT}`);
 });

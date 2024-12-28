@@ -3,20 +3,18 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import PurchasePage from "./pages/PurchasePage";
 import LoginPage from "./pages/LoginPage";
-import { ToyProvider } from "./context/ToyContext"; // Import ToyProvider
-import { UserProvider } from "./context/UserContext"; // Import UserProvider
-import CartProvider from "./context/CartContext"; // Import CartProvider
+import { ToyProvider } from "./context/ToyContext";
+import { UserProvider } from "./context/UserContext";
+import CartProvider from "./context/CartContext";
 
 function App() {
-  console.log(process.env.REACT_APP_API);
-
   return (
+    // Wrap the application with UserProvider for authentication
     <UserProvider>
-      {/* Wrap the application with UserProvider for authentication */}
+      {/* Wrap the application with ToyProvider for toy data */}
       <ToyProvider>
-        {/* Wrap the application with ToyProvider for toy data */}
+        {/* Wrap the application with CartProvider for cart state */}
         <CartProvider>
-          {/* Wrap the application with CartProvider for cart state */}
           <Router>
             <Routes>
               <Route path="/" element={<HomePage />} />

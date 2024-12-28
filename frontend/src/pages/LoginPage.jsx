@@ -42,14 +42,17 @@ const LoginPage = () => {
 
       // Handle sign-up logic (create user)
       try {
-        const response = await fetch("http://localhost:5000/api/register", {
-          // Full URL for backend
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_API}/api/register`,
+          {
+            // Full URL for backend
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
         const data = await response.json();
 
         if (response.ok) {
@@ -70,7 +73,7 @@ const LoginPage = () => {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/login", {
+        const response = await fetch(`${process.env.REACT_APP_API}/api/login`, {
           // Full URL for backend
           method: "POST",
           headers: {

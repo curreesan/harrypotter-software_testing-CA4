@@ -10,7 +10,7 @@ export const ToyProvider = ({ children }) => {
   // Fetch toy data from the backend
   const fetchToys = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/toys");
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/toys`);
       setToys(response.data); // Sync toys with backend
       setLoading(false);
     } catch (error) {
